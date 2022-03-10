@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CalculateFee xmlns="http://tempuri.org/" xmlns:ns2="http://schemas.datacontract.org/2004/07/P2PProxyService" xmlns:ns3="http://schemas.datacontract.org/2004/07/Common.Requests" xmlns:ns4="http://schemas.datacontract.org/2004/07/P2PServer" xmlns:ns5="http://schemas.datacontract.org/2004/07/P2PServer.DataContracts">
+    <calculateFeeRequest>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;calculateFeeRequest&gt;
+    &lt;amount&gt;10&lt;/amount&gt;
+    &lt;cardDestinationPan&gt;asdas&lt;/cardDestinationPan&gt;
+    &lt;currencyId&gt;122&lt;/currencyId&gt;
+    &lt;login&gt;asdfas&lt;/login&gt;
+    &lt;password&gt;asdsa&lt;/password&gt;
+    &lt;reqid&gt;asdas&lt;/reqid&gt;
+&lt;/calculateFeeRequest&gt;
+</calculateFeeRequest>
+</CalculateFee>

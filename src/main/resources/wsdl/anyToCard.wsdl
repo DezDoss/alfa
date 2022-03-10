@@ -1,0 +1,763 @@
+<wsdl:definitions name="AnyToCardService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+    <wsp:Policy wsu:Id="BasicHttpsBinding_IAnyToCardService_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:types>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/P2PProxyService"/>
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/P2PServer"/>
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/Common.Requests"/>
+            <xs:element name="GetData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="value" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetDataUsingDataContract">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="composite" nillable="true" type="q1:CompositeType" xmlns:q1="http://schemas.datacontract.org/2004/07/P2PProxyService"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetDataUsingDataContractResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q2:CompositeType" xmlns:q2="http://schemas.datacontract.org/2004/07/P2PProxyService"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TestConnection">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TestConnectionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="TestConnectionResult" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CalculateFee">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="calculateFeeRequest" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CalculateFeeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="CalculateFeeResult" nillable="true" type="q3:OperationResult" xmlns:q3="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CompletePayment">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="completePaymentRequest" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CompletePaymentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="CompletePaymentResult" nillable="true" type="q4:OperationResult" xmlns:q4="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStatusTransaction">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="getStatusTransactionRequest" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStatusTransactionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetStatusTransactionResult" nillable="true" type="q5:OperationResult" xmlns:q5="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetBalance">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetBalanceRequest" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetBalanceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetBalanceResult" nillable="true" type="q6:OperationResult" xmlns:q6="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetReport">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetReportRequest" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetReportResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetReportResult" nillable="true" type="q7:OperationResult" xmlns:q7="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ChangePassword">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ChangePasswordRequest" nillable="true" type="q8:ChangePasswordRequest" xmlns:q8="http://schemas.datacontract.org/2004/07/Common.Requests"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ChangePasswordResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ChangePasswordResult" nillable="true" type="q9:OperationResult" xmlns:q9="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+            <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+            <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+            <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+            <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+            <xs:element name="byte" nillable="true" type="xs:byte"/>
+            <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+            <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+            <xs:element name="double" nillable="true" type="xs:double"/>
+            <xs:element name="float" nillable="true" type="xs:float"/>
+            <xs:element name="int" nillable="true" type="xs:int"/>
+            <xs:element name="long" nillable="true" type="xs:long"/>
+            <xs:element name="QName" nillable="true" type="xs:QName"/>
+            <xs:element name="short" nillable="true" type="xs:short"/>
+            <xs:element name="string" nillable="true" type="xs:string"/>
+            <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+            <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+            <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+            <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+            <xs:element name="char" nillable="true" type="tns:char"/>
+            <xs:simpleType name="char">
+                <xs:restriction base="xs:int"/>
+            </xs:simpleType>
+            <xs:element name="duration" nillable="true" type="tns:duration"/>
+            <xs:simpleType name="duration">
+                <xs:restriction base="xs:duration">
+                    <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+                    <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+                    <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="guid" nillable="true" type="tns:guid"/>
+            <xs:simpleType name="guid">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:attribute name="FactoryType" type="xs:QName"/>
+            <xs:attribute name="Id" type="xs:ID"/>
+            <xs:attribute name="Ref" type="xs:IDREF"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/P2PProxyService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/P2PProxyService">
+            <xs:complexType name="CompositeType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="BoolValue" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="CompositeType" nillable="true" type="tns:CompositeType"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/P2PServer" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/P2PServer">
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/P2PServer.DataContracts"/>
+            <xs:complexType name="OperationResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Code" type="xs:int"/>
+                    <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultObject" nillable="true" type="q1:BaseResponse" xmlns:q1="http://schemas.datacontract.org/2004/07/P2PServer.DataContracts"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="OperationResult" nillable="true" type="tns:OperationResult"/>
+            <xs:simpleType name="SecurityType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ADDITIONALAUTH"/>
+                    <xs:enumeration value="SECURECODE"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="SecurityType" nillable="true" type="tns:SecurityType"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/P2PServer.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/P2PServer.DataContracts">
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/P2PServer"/>
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/Common.Requests"/>
+            <xs:complexType name="BaseResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ReqId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SessionCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="BaseResponse" nillable="true" type="tns:BaseResponse"/>
+            <xs:complexType name="CalculatedFeeResponce">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="CurrencyId" type="xs:int"/>
+                            <xs:element minOccurs="0" name="DestinationCardCountry" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="EcomType" type="xs:boolean"/>
+                            <xs:element minOccurs="0" name="Fee" type="xs:decimal"/>
+                            <xs:element minOccurs="0" name="SourceCardCountry" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="CalculatedFeeResponce" nillable="true" type="tns:CalculatedFeeResponce"/>
+            <xs:complexType name="RegisterPaymentResponce">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="AcsUrl" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="DebitAuthCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Md" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="PaReq" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="RefNum" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="SecurityType" type="q1:SecurityType" xmlns:q1="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="RegisterPaymentResponce" nillable="true" type="tns:RegisterPaymentResponce"/>
+            <xs:complexType name="OpenSessionResponce">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="OpenSessionResponce" nillable="true" type="tns:OpenSessionResponce"/>
+            <xs:complexType name="CompletePaymentResponce">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="DebitAuthCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="DebitAuthorisationCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Fee" type="xs:decimal"/>
+                            <xs:element minOccurs="0" name="OperationDate" type="xs:dateTime"/>
+                            <xs:element minOccurs="0" name="RefNum" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="SecurityType" type="q2:SecurityType" xmlns:q2="http://schemas.datacontract.org/2004/07/P2PServer"/>
+                            <xs:element minOccurs="0" name="TransferTerminalId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="CompletePaymentResponce" nillable="true" type="tns:CompletePaymentResponce"/>
+            <xs:complexType name="GetStatusTransactionResponce">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Reqidrp" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Sessioncoderp" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Status" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetStatusTransactionResponce" nillable="true" type="tns:GetStatusTransactionResponce"/>
+            <xs:complexType name="GetHistoryMobileResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="HistoryMobile" nillable="true" type="q3:ArrayOfHistoryMobile" xmlns:q3="http://schemas.datacontract.org/2004/07/Common.Requests"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetHistoryMobileResponse" nillable="true" type="tns:GetHistoryMobileResponse"/>
+            <xs:complexType name="GetTemplateResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Template" nillable="true" type="q4:ArrayOfTemplate" xmlns:q4="http://schemas.datacontract.org/2004/07/Common.Requests"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetTemplateResponse" nillable="true" type="tns:GetTemplateResponse"/>
+            <xs:complexType name="GetCardTemplateResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="CardTemplate" nillable="true" type="q5:ArrayOfCardTemplate" xmlns:q5="http://schemas.datacontract.org/2004/07/Common.Requests"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetCardTemplateResponse" nillable="true" type="tns:GetCardTemplateResponse"/>
+            <xs:complexType name="LongResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Value" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="LongResponse" nillable="true" type="tns:LongResponse"/>
+            <xs:complexType name="GetBalanceResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Balance" type="xs:double"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetBalanceResponse" nillable="true" type="tns:GetBalanceResponse"/>
+            <xs:complexType name="GetReportResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Trans" nillable="true" type="tns:ArrayOfTrans"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetReportResponse" nillable="true" type="tns:GetReportResponse"/>
+            <xs:complexType name="ArrayOfTrans">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Trans" nillable="true" type="tns:Trans"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ArrayOfTrans" nillable="true" type="tns:ArrayOfTrans"/>
+            <xs:complexType name="Trans">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ArnRrn" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CardDestinationPan" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Dt" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="ReqId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SessionCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="TerminalNumber" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Trans" nillable="true" type="tns:Trans"/>
+            <xs:complexType name="GetStatusTransactionResponceC2A">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseResponse">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="Error" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Stage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="Status" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="GetStatusTransactionResponceC2A" nillable="true" type="tns:GetStatusTransactionResponceC2A"/>
+            <xs:complexType name="VisaAliasCalculateFeeResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:CalculatedFeeResponce">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="VisaAliasDestinationBankName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="VisaAliasDestinationCardType" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="VisaAliasRecipientName" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="VisaAliasCalculateFeeResponse" nillable="true" type="tns:VisaAliasCalculateFeeResponse"/>
+            <xs:complexType name="VisaAliasRegisterPaymentResponse">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:RegisterPaymentResponce">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="VisaAliasDestinationBankName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="VisaAliasDestinationCardType" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="VisaAliasRecipientName" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="VisaAliasRegisterPaymentResponse" nillable="true" type="tns:VisaAliasRegisterPaymentResponse"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Common.Requests" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Common.Requests">
+            <xs:complexType name="ArrayOfHistoryMobile">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="HistoryMobile" nillable="true" type="tns:HistoryMobile"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ArrayOfHistoryMobile" nillable="true" type="tns:ArrayOfHistoryMobile"/>
+            <xs:complexType name="HistoryMobile">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CardDestination" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CardSource" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="CurrencyId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="DestCountryCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Fee" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="TemplateId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="HistoryMobile" nillable="true" type="tns:HistoryMobile"/>
+            <xs:complexType name="ArrayOfTemplate">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Template" nillable="true" type="tns:Template"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ArrayOfTemplate" nillable="true" type="tns:ArrayOfTemplate"/>
+            <xs:complexType name="Template">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="CurrencyId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="DestId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SourceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Template" nillable="true" type="tns:Template"/>
+            <xs:complexType name="ArrayOfCardTemplate">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="CardTemplate" nillable="true" type="tns:CardTemplate"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ArrayOfCardTemplate" nillable="true" type="tns:ArrayOfCardTemplate"/>
+            <xs:complexType name="CardTemplate">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="CVV2" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CardType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CardUid" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Expdate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="FIO" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Pan" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="CardTemplate" nillable="true" type="tns:CardTemplate"/>
+            <xs:complexType name="ChangePasswordRequest">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseRequest">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="NewPassword" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="ChangePasswordRequest" nillable="true" type="tns:ChangePasswordRequest"/>
+            <xs:complexType name="BaseRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ReqId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SessionCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="SystemCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="BaseRequest" nillable="true" type="tns:BaseRequest"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="IAnyToCardService_GetData_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetData"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetData_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetDataUsingDataContract_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetDataUsingDataContract"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetDataUsingDataContract_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_TestConnection_InputMessage">
+        <wsdl:part name="parameters" element="tns:TestConnection"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_TestConnection_OutputMessage">
+        <wsdl:part name="parameters" element="tns:TestConnectionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_CalculateFee_InputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateFee"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_CalculateFee_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateFeeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_CompletePayment_InputMessage">
+        <wsdl:part name="parameters" element="tns:CompletePayment"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_CompletePayment_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CompletePaymentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetStatusTransaction_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatusTransaction"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetStatusTransaction_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatusTransactionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetBalance_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetBalance"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetBalance_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetBalanceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetReport_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetReport"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_GetReport_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetReportResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_ChangePassword_InputMessage">
+        <wsdl:part name="parameters" element="tns:ChangePassword"/>
+    </wsdl:message>
+    <wsdl:message name="IAnyToCardService_ChangePassword_OutputMessage">
+        <wsdl:part name="parameters" element="tns:ChangePasswordResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IAnyToCardService">
+        <wsdl:operation name="GetData">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/GetData" message="tns:IAnyToCardService_GetData_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/GetDataResponse" message="tns:IAnyToCardService_GetData_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDataUsingDataContract">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/GetDataUsingDataContract" message="tns:IAnyToCardService_GetDataUsingDataContract_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/GetDataUsingDataContractResponse" message="tns:IAnyToCardService_GetDataUsingDataContract_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="TestConnection">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/TestConnection" message="tns:IAnyToCardService_TestConnection_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/TestConnectionResponse" message="tns:IAnyToCardService_TestConnection_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateFee">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/CalculateFee" message="tns:IAnyToCardService_CalculateFee_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/CalculateFeeResponse" message="tns:IAnyToCardService_CalculateFee_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="CompletePayment">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/CompletePayment" message="tns:IAnyToCardService_CompletePayment_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/CompletePaymentResponse" message="tns:IAnyToCardService_CompletePayment_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatusTransaction">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/GetStatusTransaction" message="tns:IAnyToCardService_GetStatusTransaction_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/GetStatusTransactionResponse" message="tns:IAnyToCardService_GetStatusTransaction_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBalance">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/GetBalance" message="tns:IAnyToCardService_GetBalance_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/GetBalanceResponse" message="tns:IAnyToCardService_GetBalance_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetReport">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/GetReport" message="tns:IAnyToCardService_GetReport_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/GetReportResponse" message="tns:IAnyToCardService_GetReport_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="ChangePassword">
+            <wsdl:input wsaw:Action="http://tempuri.org/IAnyToCardService/ChangePassword" message="tns:IAnyToCardService_ChangePassword_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IAnyToCardService/ChangePasswordResponse" message="tns:IAnyToCardService_ChangePassword_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BasicHttpBinding_IAnyToCardService" type="tns:IAnyToCardService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetData">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDataUsingDataContract">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetDataUsingDataContract" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TestConnection">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/TestConnection" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateFee">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/CalculateFee" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CompletePayment">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/CompletePayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatusTransaction">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetStatusTransaction" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBalance">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetBalance" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReport">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetReport" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ChangePassword">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/ChangePassword" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BasicHttpsBinding_IAnyToCardService" type="tns:IAnyToCardService">
+        <wsp:PolicyReference URI="#BasicHttpsBinding_IAnyToCardService_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetData">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDataUsingDataContract">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetDataUsingDataContract" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TestConnection">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/TestConnection" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateFee">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/CalculateFee" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CompletePayment">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/CompletePayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatusTransaction">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetStatusTransaction" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBalance">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetBalance" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReport">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/GetReport" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ChangePassword">
+            <soap:operation soapAction="http://tempuri.org/IAnyToCardService/ChangePassword" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AnyToCardService">
+        <wsdl:port name="BasicHttpBinding_IAnyToCardService" binding="tns:BasicHttpBinding_IAnyToCardService">
+            <soap:address location="http://vserver347.alfa-bank.kz:8444/AnyToCardService.svc"/>
+        </wsdl:port>
+        <wsdl:port name="BasicHttpsBinding_IAnyToCardService" binding="tns:BasicHttpsBinding_IAnyToCardService">
+            <soap:address location="https://195.47.220.55:8443/AnyToCardService.svc"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
