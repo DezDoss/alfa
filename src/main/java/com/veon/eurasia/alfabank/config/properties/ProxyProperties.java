@@ -1,4 +1,4 @@
-package com.veon.eurasia.alfabank.config;
+package com.veon.eurasia.alfabank.config.properties;
 
 import lombok.Getter;
 import lombok.Setter;

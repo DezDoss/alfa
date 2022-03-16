@@ -3,12 +3,12 @@ spring:
     name: dc-alfa-bank-service
 application:
   alfa-bank:
-    url: https://195.47.220.55:8443/AnyToCardService.svc?singleWsdl
+    url: http://localhost:9090/calculateFee
     username: alfaany
     password: gh1TG2d(5V-
   proxy:
     host: 172.28.8.120
-    port: 3128
+    port: 8080
     username: Tech_Linux_Repo
     password: 8CNrnd_Agl
-    enabled: true
+    enabled: false

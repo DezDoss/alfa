@@ -1,4 +1,4 @@
-package com.veon.eurasia.alfabank.config;
+package com.veon.eurasia.alfabank.config.properties;
 
 import com.sun.xml.txw2.output.XMLWriter;
 import org.xml.sax.SAXException;

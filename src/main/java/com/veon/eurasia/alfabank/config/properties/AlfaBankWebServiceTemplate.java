@@ -1,4 +1,4 @@
-package com.veon.eurasia.alfabank.config;
+package com.veon.eurasia.alfabank.config.properties;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -28,11 +28,9 @@ public class AlfaBankWebServiceTemplate extends WebServiceTemplate {
     return new WebServiceMessageCallback() {
       @SneakyThrows
       @Override
-      public void doWithMessage(WebServiceMessage message) throws IOException, TransformerException {
+      public void doWithMessage(WebServiceMessage message) {
         SOAPMessage msg = ((SaajSoapMessage) message).getSaajMessage();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        MimeHeaders headers = msg.getMimeHeaders();
-        headers.addHeader(TransportConstants.HEADER_CONTENT_TYPE, "application/soap+xml; charset=utf-8");
         msg.writeTo(out);
         String strMsg = new String(out.toByteArray());
         log.info(strMsg);

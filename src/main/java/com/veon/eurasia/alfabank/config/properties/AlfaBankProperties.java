@@ -1,4 +1,4 @@
-package com.veon.eurasia.alfabank.config;
+package com.veon.eurasia.alfabank.config.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "application.alfa-bank")
-public class AlfaBankServiceProperties {
+public class AlfaBankProperties {
   private String url;
   private String userName;
   private String password;

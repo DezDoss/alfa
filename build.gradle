@@ -72,25 +72,33 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 //    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.5'
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
+//    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
     implementation 'javax.xml.soap:javax.xml.soap-api:1.4.0'
     implementation 'com.sun.xml.messaging.saaj:saaj-impl:1.5.1'
 //    implementation 'org.springframework.cloud:spring-cloud-stream'
-    implementation 'org.apache.httpcomponents:httpclient:4.5'
-    implementation 'commons-codec:commons-codec:1.9'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.4'
 
 //    compileOnly 'com.sun.xml.ws:jaxws-rt:3.0.1'
     compileOnly 'org.projectlombok:lombok'
-    compileOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.1'
+    compileOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.2'
 
     implementation 'org.springframework.ws:spring-ws-core'
-    // For Java 11:
+
     implementation 'org.glassfish.jaxb:jaxb-runtime'
     implementation(files(genJaxb.classesDir).builtBy(genJaxb))
 
     jaxb "com.sun.xml.bind:jaxb-xjc:2.1.7"
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
 
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Mapstruct
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
