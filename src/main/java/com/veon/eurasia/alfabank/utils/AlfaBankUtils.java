@@ -1,6 +1,6 @@
 package com.veon.eurasia.alfabank.utils;
 
-import com.veon.eurasia.alfabank.config.properties.AlfaBankProperties;
+import com.veon.eurasia.alfabank.configuration.properties.AlfaBankProperties;
 import com.veon.eurasia.alfabank.model.request.any2card.BaseRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AlfaBankUtils {
 
- private final AlfaBankProperties alfaBankProperties;
+  private final AlfaBankProperties alfaBankProperties;
 
   public void fillCredentials(BaseRequest request) {
     request.setLogin(alfaBankProperties.getUserName());

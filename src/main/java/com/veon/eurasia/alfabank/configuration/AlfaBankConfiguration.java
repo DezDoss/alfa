@@ -1,5 +1,7 @@
-package com.veon.eurasia.alfabank.config.properties;
+package com.veon.eurasia.alfabank.configuration;
 
+import com.veon.eurasia.alfabank.configuration.properties.AlfaBankProperties;
+import com.veon.eurasia.alfabank.configuration.properties.ProxyProperties;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -14,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.WebServiceMessageFactory;
+import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.soap.SoapVersion;
 import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
@@ -21,14 +24,14 @@ import org.tempuri.ObjectFactory;
 
 @Configuration
 @RequiredArgsConstructor
-public class AlfaBankConfig {
+public class AlfaBankConfiguration {
 
   private final ProxyProperties proxyProperties;
   private final AlfaBankProperties alfaBankProperties;
 
   @Bean(name = "anyToCardServiceTemplate")
-  public AlfaBankWebServiceTemplate anyToCardServiceTemplate() {
-    AlfaBankWebServiceTemplate webServiceTemplate
+  public WebServiceTemplate anyToCardServiceTemplate() {
+    WebServiceTemplate webServiceTemplate
             = createWebService(alfaBankProperties.getUrl(),
             "org.tempuri");
 
@@ -68,8 +71,8 @@ public class AlfaBankConfig {
   }
 
   private HttpComponentsMessageSender getProxyClient() {
-    if(proxyProperties == null || !proxyProperties.getEnabled()
-       || proxyProperties.getHost().isBlank()) {
+    if (proxyProperties == null || !proxyProperties.getEnabled()
+        || proxyProperties.getHost().isBlank()) {
       return new HttpComponentsMessageSender();
     }
 
@@ -83,7 +86,7 @@ public class AlfaBankConfig {
             .setDefaultRequestConfig(config)
             .setDefaultCredentialsProvider(credentialsProvider())
             .addInterceptorFirst(new HttpComponentsMessageSender.RemoveSoapHeadersInterceptor())
-//            .setConnectionTimeToLive(10, TimeUnit.SECONDS)
+            //.setConnectionTimeToLive(10, TimeUnit.SECONDS) //TODO
             .build();
 
     return new HttpComponentsMessageSender(httpClient);
@@ -101,11 +104,11 @@ public class AlfaBankConfig {
                                            proxyProperties.getPassword());
   }
 
-  private AlfaBankWebServiceTemplate createWebService(String url, String packageName) {
+  private WebServiceTemplate createWebService(String url, String packageName) {
     Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
     jaxb2Marshaller.setPackagesToScan(packageName);
 
-    AlfaBankWebServiceTemplate webServiceTemplate = new AlfaBankWebServiceTemplate();
+    WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
     webServiceTemplate.setMarshaller(jaxb2Marshaller);
     webServiceTemplate.setUnmarshaller(jaxb2Marshaller);
     webServiceTemplate.setDefaultUri(url);

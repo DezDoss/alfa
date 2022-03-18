@@ -1,13 +1,11 @@
 package com.veon.eurasia.alfabank.model.request.any2card;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -21,5 +19,7 @@ public abstract class BaseRequest {
   @NotNull
   @XmlElement(name = "ReqId", required = true)
   private String reqId;
+  @XmlElement(name = "SystemCode")
+  private String systemCode;
 
 }

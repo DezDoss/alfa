@@ -1,24 +1,20 @@
 package com.veon.eurasia.alfabank.model.request.any2card;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @XmlRootElement(name = "CompletePaymentRequest")
 @EqualsAndHashCode(callSuper = true)
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
-public class CompletePaymentRequest extends BaseRequest{
+public class CompletePaymentRequest extends BaseRequest {
 
-  @XmlElement(name = "SystemCode")
-  private String systemCode;
   @XmlElement(name = "SessionCode")
   private String sessionCode;
   @XmlElement(name = "NameRecipient")

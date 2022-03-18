@@ -1,22 +1,13 @@
 package com.veon.eurasia.alfabank.model.dto.any2card.request;
 
-import java.time.LocalDateTime;
+import com.veon.eurasia.alfabank.model.dto.BaseRequestDto;
+import java.util.Date;
+import lombok.Getter;
 
-public class GetReportRequestDto {
-//  Reqid String Да Id во внешней системе
-//  Systemcode String Нет Код внешней системы
-//  Login String Да Логин партнера
-//  Password String Да Пароль партнера
-//  DtBeg DateTime Нет Дата начала отчета
-//  DtEnd DateTime Нет Дата окончания отчета
-//  ReqId String Нет Id во внешней системе
-//  SessionCode String Нет Код сессии
+@Getter
+public class GetReportRequestDto extends BaseRequestDto {
 
-
-  private String reqId;
-  private String systemCode;
-  private LocalDateTime dtBeg;
-  private LocalDateTime dtEnd;
-//  private String reqId;
-  private String sessionCofe;
+  private Date dtBeg;
+  private Date dtEnd;
+  private String sessionCode;
 }

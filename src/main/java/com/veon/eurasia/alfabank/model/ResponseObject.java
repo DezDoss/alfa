@@ -6,8 +6,8 @@ import org.datacontract.schemas._2004._07.p2pserver.BaseResponse;
 
 @Getter
 @Builder
-public class ResultObject<T extends BaseResponse> {
-      private final T response;
-      private final int code;
-      private final String message;
+public class ResponseObject<T extends BaseResponse> {
+  private final T response;
+  private final int code;
+  private final String message;
 }

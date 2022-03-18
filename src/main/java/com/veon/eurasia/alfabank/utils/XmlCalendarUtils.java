@@ -24,4 +24,8 @@ public final class XmlCalendarUtils {
             .ofInstant(calendar.toGregorianCalendar().toInstant(), zone);
   }
 
+  public static ZonedDateTime toZonedDt(XMLGregorianCalendar calendar) {
+    return toZonedDt(calendar, calendar.toGregorianCalendar().getTimeZone().toZoneId());
+  }
+
 }

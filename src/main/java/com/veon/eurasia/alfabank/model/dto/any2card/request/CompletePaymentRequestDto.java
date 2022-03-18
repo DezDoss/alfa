@@ -1,15 +1,11 @@
 package com.veon.eurasia.alfabank.model.dto.any2card.request;
 
+import com.veon.eurasia.alfabank.model.dto.BaseRequestDto;
+import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 
-import javax.validation.constraints.NotBlank;
-
 @Getter
-public class CompletePaymentRequestDto {
-
-  @NotBlank
-  private String reqId;
-  private String systemCode;
+public class CompletePaymentRequestDto extends BaseRequestDto {
   @NotBlank
   private String sessionCode;
   private String nameRecipient;

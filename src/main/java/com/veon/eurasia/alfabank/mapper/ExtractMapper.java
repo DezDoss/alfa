@@ -1,18 +1,17 @@
 package com.veon.eurasia.alfabank.mapper;
 
-import org.mapstruct.Mapper;
-
 import java.util.Optional;
 import javax.xml.bind.JAXBElement;
+import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface ConverterMapper {
+public interface ExtractMapper {
 
   default <T> T getValue(JAXBElement<T> element) {
     return element.getValue();
   }
 
-  default <T> T get(Optional<T> element) {
+  default <T> T unwrap(Optional<T> element) {
     return element.get();
   }
 }

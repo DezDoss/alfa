@@ -1,7 +1,7 @@
-package com.veon.eurasia.alfabank.model.enums;
+package com.veon.eurasia.alfabank.enums;
 
-import lombok.Getter;
 import java.util.Optional;
+import lombok.Getter;
 
 @Getter
 public enum TransactionStatus {
@@ -20,12 +20,11 @@ public enum TransactionStatus {
   }
 
   public static Optional<TransactionStatus> findTransactionFromStatusCode(int code) {
-    for(TransactionStatus transactionStatus : TransactionStatus.values()) {
+    for (TransactionStatus transactionStatus : TransactionStatus.values()) {
       if (transactionStatus.code == code) {
         return Optional.of(transactionStatus);
       }
     }
-
     return Optional.of(UNKNOWN_ERROR);
   }
 }

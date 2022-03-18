@@ -1,22 +1,15 @@
 package com.veon.eurasia.alfabank.model.dto.any2card.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
+import com.veon.eurasia.alfabank.model.dto.BaseRequestDto;
 import java.math.BigDecimal;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
 
 
 @Getter
-public class CalculateFeeRequestDto {
-
-  @NotBlank
-  private String reqId;
-  private String systemCode;
+public class CalculateFeeRequestDto extends BaseRequestDto {
   @NotBlank
   private String cardDestinationPan;
   @Min(1)
